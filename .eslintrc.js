@@ -14,6 +14,8 @@ module.exports = {
         'vue/singleline-html-element-content-newline': false,
         'vue/max-attributes-per-line':false,
         'vue/attributes-order':false,
-        'vue/html-closing-bracket-spacing':false
+        'vue/html-closing-bracket-spacing':false,
+        'vue/multiline-html-element-content-newline':false,
+        'vue/mustache-interpolation-spacing':false
     }
 };

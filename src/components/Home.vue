@@ -1,18 +1,26 @@
 <template>
     <el-container>
         <el-header>
-            <h1>主页</h1>
+            <h3 style="color: white">主页</h3>
         </el-header>
         <el-main>
-            <h2>公告栏</h2>
-            <div v-for="announcement of announcementData" v-bind:key="announcement.id" class="announcement-card">
+            <el-row>
+                <el-col :lg="12" :sm="24">
+                    <h1>欢迎你，实验人员！</h1>
+                </el-col>
+                <el-col :lg="12" :sm="24">
+                    <h2>公告栏</h2>
+                    <div v-for="announcement of announcementData" :key="announcement.id" class="announcement-card">
 
-                <span><i class="el-icon-date"></i>{{ new Date(announcement.create_timestamp).toLocaleString() }} </span>
-                <span class="author"><i class="el-icon-user-solid "></i>{{ announcement.author_username }} </span>
-                <h3>{{announcement.title}}</h3>
-                <p>{{announcement.content}}</p>
+                        <span><i class="el-icon-date"></i>{{ new Date(announcement.create_timestamp).toLocaleString() }} </span>
+                        <span class="author"><i class="el-icon-user-solid "></i>{{ announcement.author_username }} </span>
+                        <h3>{{announcement.title}}</h3>
+                        <p>{{announcement.content}}</p>
 
-            </div>
+                    </div>
+                </el-col>
+            </el-row>
+
         </el-main>
         <el-footer>
             版权所有哦
@@ -25,18 +33,6 @@
         name: "Home",
         data() {
             return {
-                test: {
-                    "status": 0,
-                    "data": [
-                        {
-                            "id": 1,
-                            "author_username": "test",
-                            "create_timestamp": "2020-02-29T13:14:35Z",
-                            "title": "系统公告",
-                            "content": "本系统摸鱼要素过多，正在加速开发中。"
-                        }
-                    ]
-                },
                 announcementData: []
             }
         },
@@ -58,6 +54,11 @@
                         console.error(err)
                     }
                 })
+            },
+            getTeachersInfo() {
+                this.axios.get('/api/info/staffs').then(res => {
+
+                })
             }
         }
     }
@@ -65,7 +66,9 @@
 
 <style scoped>
     .el-header {
-        background-color: lightcyan;
+        background-color: black;
+        color: white;
+        vertical-align: center;
     }
 
     .author {
@@ -73,9 +76,10 @@
     }
 
     .announcement-card {
-        width: 30rem;
+        /*width: 30rem;*/
         border: solid thin;
-        padding: 3rem 5rem;
+        padding: 1rem 2rem;
         border-radius: 1rem;
+        margin: 1rem 0;
     }
 </style>
